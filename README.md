@@ -10,12 +10,12 @@ This application supports the [Getting Started with Go on Heroku](https://devcen
 Make sure you have [Go](http://golang.org/doc/install) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
 
 ```sh
-$ go get -u github.com/heroku/go-getting-started
-$ cd $GOPATH/src/github.com/heroku/go-getting-started
+$ go get -u bitbucket.org/pawel90g/github-user-statistics
+$ cd $GOPATH/src/github.com/heroku/github-user-statistics
 $ heroku local
 ```
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+Your app should now be running on [localhost:8000](http://localhost:8000/).
 
 You should also install [govendor](https://github.com/kardianos/govendor) if you are going to add any dependencies to the sample app.
 

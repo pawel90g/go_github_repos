@@ -1,12 +1,12 @@
 {
-  "name": "Start on Heroku: Go",
-  "description": "Go Getting Started Example App",
+  "name": "Github User Statistics",
+  "description": "Github User Statistics APP",
   "keywords": [
-    "getting-started",
+    "github-user-statistics",
     "go",
     "sample",
     "example"
   ],
-  "website": "http://github.com/heroku/go-getting-started",
-  "repository": "http://github.com/heroku/go-getting-started"
+  "website": "https://bitbucket.org/pawel90g/github-user-statistics",
+  "repository": "https://bitbucket.org/pawel90g/github-user-statistics"
 }
