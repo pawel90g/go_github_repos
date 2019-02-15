@@ -2,15 +2,13 @@ package main
 
 import (
 	"log"
-	"net/http"
-	"os"
 
 	"github.com/gin-gonic/gin"
-	_ "github.com/heroku/x/hmetrics/onload"
+	"github.com/heroku/github-user-statistics/routers"
 )
 
 func main() {
-	port := os.Getenv("PORT")
+	port := "8000" //os.Getenv("PORT")
 
 	if port == "" {
 		log.Fatal("$PORT must be set")
@@ -21,9 +19,7 @@ func main() {
 	router.LoadHTMLGlob("templates/*.tmpl.html")
 	router.Static("/static", "static")
 
-	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.tmpl.html", nil)
-	})
+	routers.InitGithubRouter(router)
 
 	router.Run(":" + port)
 }
