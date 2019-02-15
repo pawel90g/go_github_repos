@@ -3,8 +3,9 @@ package main
 import (
 	"log"
 
+	"github-user-statistics/routers"
+
 	"github.com/gin-gonic/gin"
-	"github.com/heroku/github-user-statistics/routers"
 )
 
 func main() {

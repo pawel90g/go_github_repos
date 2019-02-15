@@ -3,7 +3,7 @@ package routers
 import (
 	"net/http"
 
-	"github.com/heroku/github-user-statistics/controllers"
+	"github-user-statistics/controllers"
 
 	"github.com/gin-gonic/gin"
 )
