@@ -15,7 +15,8 @@ func GetClientID() string {
 }
 
 func MainPage(c *gin.Context) {
-	c.HTML(http.StatusOK, "index.tmpl.html", gin.H{"clientId": services.GetClientID(), "host": "http://localhost:8000"})
+
+	c.HTML(http.StatusOK, "index.tmpl.html", gin.H{"clientId": services.GetClientID()})
 }
 
 func GithubCallback(c *gin.Context) {
