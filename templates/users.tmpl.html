@@ -1,0 +1,25 @@
+<html>
+{{template "header.tmpl.html"}}
+
+<body>
+    {{template "nav.tmpl.html"}}
+
+    <div class="jumbotron text-center">
+        <div class="container">
+            <a href="/" class="lang-logo">
+                <img src="/static/lang-logo.png">
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="scrollable">
+            <ul class="list-group">
+                {{ range $key, $value := .users }}
+                <li class="list-group-item"><a href="/users/{{ $value.Login }}">{{ $value.Login }}</a></li>
+                {{ end }}
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

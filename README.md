@@ -11,7 +11,7 @@ Make sure you have [Go](http://golang.org/doc/install) and the [Heroku Toolbelt]
 
 ```sh
 $ go get -u bitbucket.org/pawel90g/github-user-statistics
-$ cd $GOPATH/src/github.com/heroku/github-user-statistics
+$ cd $GOPATH/src/github-user-statistics
 $ heroku local
 ```
 

@@ -1,0 +1,73 @@
+<html>
+{{template "header.tmpl.html"}}
+
+<body>
+    {{template "nav.tmpl.html"}}
+
+    <div class="jumbotron text-center">
+        <div class="container">
+            <h1>This is user's <b>{{ .userLogin }}</b> repository: <i>{{ .repo.Name }}</i></h1>
+            <a type="button" class="btn btn-lg btn-primary"
+                href="/users/{{ .userLogin }}">back to user's profile</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <h3>Repo info</h3>
+                <div class="row">
+                    <div class="col-lg-6">
+                        Name:
+                    </div>
+                    <div class="col-lg-6">
+                        <input disabled value="{{ .repo.Name }}" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        Private:
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="checkbox" disabled checked="{{ .repo.Private }}" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        Language:
+                    </div>
+                    <div class="col-lg-6">
+                        <input disabled value="{{ .repo.Language }}" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        Description:
+                    </div>
+                    <div class="col-lg-6">
+                        <textarea disabled value="{{ .repo.Description }}" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        Default branch:
+                    </div>
+                    <div class="col-lg-6">
+                        <input disabled value="{{ .repo.Default_Branch }}" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <h3>Languages statistics</h3>
+                <ul class="list-group">
+                    {{ range $key, $value := .langStats }}
+                    <li class="list-group-item">
+                        {{ $key }} : {{ $value }}
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

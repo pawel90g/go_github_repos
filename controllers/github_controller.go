@@ -1,48 +1,61 @@
 package controllers
 
 import (
-	"io/ioutil"
-	"log"
+	"github-user-statistics/models"
+	"github-user-statistics/services"
 	"net/http"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 )
 
-type AuthResponse struct {
-	AccessToken string
-	Scope       string
-	TokenType   string
-}
-
-var clientID = "08a723e17a18bbf7226f"
-var clientSecret = "a97026b2da5a2dcfa9db1d5b317bb84f03349a88"
+var authResponse models.AuthResponse
 
 func GetClientID() string {
-	return clientID
+	return services.GetClientID()
 }
 
 func GithubCallback(c *gin.Context) {
 	code := c.Query("code")
 
-	response, _ := http.Post("https://github.com/login/oauth/access_token?code="+code+"&client_id="+clientID+"&client_secret="+clientSecret, "application/json", nil)
+	authResponse = services.Auth(code)
+	me := services.GetAuthUser(authResponse)
+	email := services.GetUserEmail(authResponse)
+	
+	me.Email = email.Email
 
-	var accessToken AuthResponse
+	c.HTML(http.StatusOK, "user.tmpl.html", gin.H{"user": me})
+}
 
-	body, _ := ioutil.ReadAll(response.Body)
-	bodyStr := string(body)
+func GithubMyAccount(c *gin.Context) {
+	email := services.GetUserEmail(authResponse)
+	me := services.GetAuthUser(authResponse)
 
-	accessTokenParts := strings.Split(bodyStr, "&")
+	me.Email = email.Email
 
-	for _, part := range accessTokenParts {
-		if strings.HasPrefix(part, "access_token") {
-			accessToken.AccessToken = strings.Split(part, "=")[1]
-		} else if strings.HasPrefix(part, "scope") {
-			accessToken.Scope = strings.Split(part, "=")[1]
-		} else if strings.HasPrefix(part, "token_type") {
-			accessToken.TokenType = strings.Split(part, "=")[1]
-		}
-	}
+	c.HTML(http.StatusOK, "user.tmpl.html", gin.H{"user": me})
+}
 
-	log.Println(accessToken)
+func GithubUsers(c *gin.Context) {
+	users := services.GetUsers()
+
+	c.HTML(http.StatusOK, "users.tmpl.html", gin.H{"users": users})
+}
+
+func GithubUser(c *gin.Context) {
+	login := c.Param("login")
+
+	user := services.GetUser(login)
+	repos := services.GetRepos(login)
+
+	c.HTML(http.StatusOK, "user.tmpl.html", gin.H{"user": user, "repos": repos})
+}
+
+func GithubRepo(c *gin.Context) {
+	login := c.Param("login")
+	repo := c.Param("repo")
+
+	repoObj := services.GetRepo(login, repo)
+	langStats := services.GetRepoLanguages(login, repo)
+
+	c.HTML(http.StatusOK, "repo.tmpl.html", gin.H{"userLogin": login, "repo": repoObj, "langStats": langStats})
 }

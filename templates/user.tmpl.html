@@ -1,0 +1,54 @@
+<html>
+{{template "header.tmpl.html"}}
+
+<body>
+    {{template "nav.tmpl.html"}}
+
+    <div class="jumbotron text-center">
+        <div class="container">
+            {{ if .user.Avatar_Url }}
+            <img src="{{ .user.Avatar_Url }}" height="70">
+            {{ else }}
+            <img src="/static/lang-logo.png">
+            {{ end }}
+            <h1>This is user <b>{{ .user.Login }}</b> Github profile</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <h3>User info</h3>
+                <div class="row">
+                    <div class="col-lg-6">
+                        Login:
+                    </div>
+                    <div class="col-lg-6">
+                        <input disabled value="{{ .user.Login }}" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        Email:
+                    </div>
+                    <div class="col-lg-6">
+                        <input disabled value="{{ .user.Email }}" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <h3>Repositories</h3>
+                <div class="scrollable">
+                    <ul class="list-group">
+                        {{ range $key, $value := .repos }}
+                        <li class="list-group-item">
+                            <a href="/repo/{{ $value.Full_Name }}">{{ $value.Name }}</a>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

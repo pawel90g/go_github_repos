@@ -14,13 +14,13 @@
         repositories stored on Github.</p>
       <a type="button" class="btn btn-lg btn-primary"
         href="https://bitbucket.org/pawel90g/github-user-statistics">Source on Bitbucket</a>
-
-      <a type="button" class="btn btn-lg btn-primary"
-        href="https://github.com/login/oauth/authorize?redirect_uri={{ .host }}/callback&client_id={{ .clientId }}">Github
-        login</a>
     </div>
   </div>
   <div class="container">
+      <ul class="list-group">
+          <li class="list-group-item"><a href="/users">Github users</a></li>
+          <li class="list-group-item"><a href="https://github.com/login/oauth/authorize?redirect_uri={{ .host }}/callback&client_id={{ .clientId }}&scope=user">Me</a></li>
+      </ul>
   </div>
 </body>
 
