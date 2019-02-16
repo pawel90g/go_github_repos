@@ -3,12 +3,13 @@ package main
 import (
 	"github-user-statistics/routers"
 	"log"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	port := "8000" // os.Getenv("PORT")
+	port := os.Getenv("PORT")
 
 	if port == "" {
 		log.Fatal("$PORT must be set")
