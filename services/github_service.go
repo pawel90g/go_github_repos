@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"github-user-statistics/models"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strings"
 )
@@ -87,7 +86,7 @@ func GetUserEmail(accessToken models.AuthResponse) models.Email {
 	client := http.Client{}
 	resp, _ := client.Do(req)
 	respBytes, _ := ioutil.ReadAll(resp.Body)
-	log.Println(string(respBytes))
+
 	var emails *[]models.Email
 
 	json.Unmarshal(respBytes, &emails)
